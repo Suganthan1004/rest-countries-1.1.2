@@ -1,0 +1,586 @@
+* {
+    font-family: 'DM Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+}
+
+/* ==================== DARK THEME (PRIMARY) ==================== */
+body#dark {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+    color: #e5e5e5;
+}
+
+body#dark .header {
+    background: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body#dark .country-card {
+    background: rgba(31, 31, 31, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+body#dark .country-card:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 12px 48px rgba(59, 130, 246, 0.3),
+        0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+body#dark .country-card.favorited {
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+}
+
+body#dark button,
+body#dark select,
+body#dark input {
+    background: rgba(31, 31, 31, 0.9);
+    color: #e5e5e5;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body#dark button:hover,
+body#dark select:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+body#dark .modal-content {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+body#dark .suggestions {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+body#dark .suggestions div:hover {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+/* ==================== LIGHT THEME (SECONDARY) ==================== */
+body#light {
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 50%, #f5f5f5 100%);
+    color: #1a1a1a;
+}
+
+body#light .header {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body#light .country-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+body#light .country-card:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+}
+
+body#light .country-card.favorited {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+}
+
+body#light button,
+body#light select,
+body#light input {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body#light button:hover,
+body#light select:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+body#light .modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+body#light .suggestions {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+body#light .suggestions div:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.title {
+    font-family: 'Unbounded', cursive;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    white-space: nowrap;
+    flex: 0 0 auto;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1400px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+}
+
+.header-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.nav-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 280px;
+}
+
+.search-box input {
+    padding: 10px 16px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    min-width: 180px;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+button,
+select {
+    padding: 10px 14px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+button i {
+    font-size: 16px;
+}
+
+.filter-bar select {
+    min-width: 120px;
+    padding: 10px 12px;
+}
+
+#favoritesToggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+}
+
+#favoritesToggle.active {
+    background: rgba(59, 130, 246, 0.3) !important;
+    border-color: rgba(59, 130, 246, 0.6) !important;
+}
+
+#favoritesToggle i {
+    color: #3b82f6;
+}
+
+/* ==================== SUGGESTIONS ==================== */
+.suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 280px;
+    max-width: 400px;
+    margin-top: 6px;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 2000;
+}
+
+.suggestions div {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* ==================== PAGINATION ==================== */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+}
+
+.pagination button {
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#pageInfo {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* ==================== COUNTRY CARDS ==================== */
+#countryContainer {
+    margin-top: 160px;
+    padding: 0 20px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.country-card {
+    position: relative;
+    width: 220px;
+    padding: 24px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.country-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    z-index: 10;
+}
+
+.country-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.country-card p {
+    margin: 8px 0;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.country-card p:first-of-type {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* Favorite button on card */
+.favorite-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px);
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.5) !important;
+}
+
+.favorite-btn i {
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn.favorited i {
+    color: #ef4444;
+}
+
+/* ==================== MODAL ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 550px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideIn 0.4s ease;
+    margin: 20px;
+    backdrop-filter: blur(20px);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px) scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1;
+    color: #e5e5e5;
+}
+
+.close:hover {
+    color: #ef4444;
+    transform: scale(1.1);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: 'Unbounded', cursive;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.modal-content img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    margin: 20px 0;
+    display: block;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+    margin: 12px 0;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.modal-content p strong {
+    color: #3b82f6;
+}
+
+/* ==================== SCROLLBAR ==================== */
+.suggestions::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+body#dark .suggestions::-webkit-scrollbar-track,
+body#dark .modal-content::-webkit-scrollbar-track {
+    background: rgba(31, 31, 31, 0.5);
+    border-radius: 10px;
+}
+
+body#dark .suggestions::-webkit-scrollbar-thumb,
+body#dark .modal-content::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 10px;
+}
+
+body#dark .suggestions::-webkit-scrollbar-thumb:hover,
+body#dark .modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.7);
+}
+
+body#light .suggestions::-webkit-scrollbar-track,
+body#light .modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+body#light .suggestions::-webkit-scrollbar-thumb,
+body#light .modal-content::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+body#light .suggestions::-webkit-scrollbar-thumb:hover,
+body#light .modal-content::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 16px;
+        top: 10px;
+    }
+
+    .header-row {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .title {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .search-box {
+        min-width: 100%;
+    }
+
+    .search-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .search-bar input {
+        min-width: 200px;
+        flex: 1;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-bar select,
+    #favoritesToggle {
+        width: 100%;
+    }
+
+    .pagination {
+        justify-content: center;
+    }
+
+    #countryContainer {
+        margin-top: 280px;
+        gap: 16px;
+    }
+
+    .country-card {
+        width: calc(50% - 12px);
+        min-width: 160px;
+        padding: 16px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .country-card {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 1.1rem;
+    }
+
+    .pagination button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    #pageInfo {
+        font-size: 13px;
+    }
+
+    #countryContainer {
+        margin-top: 320px;
+    }
+}

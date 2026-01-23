@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Country Cards</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,400,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="light">
+
+    <header class="header">
+        <div class="header-row">
+            <h2 class="title">Country Cards</h2>
+
+            <div class="nav-group">
+                <button id="allCountriesBtn" title="Show all countries">
+                    <i class="fa-regular fa-house"></i>
+                </button>
+
+                <div class="search-box">
+                    <input type="search" id="countryName" placeholder="Enter country name"
+                        aria-label="Search countries" />
+                    <button id="searchBtn" title="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <div id="suggestions" class="suggestions" role="listbox"></div>
+                </div>
+
+                <button id="toggle-theme" title="Toggle theme">
+                    <i class="fa-regular fa-moon"></i>
+                </button>
+            </div>
+
+            <div class="nav-group">
+                <select id="regionFilter" aria-label="Filter by region">
+                    <option value="all">All Regions</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">Americas</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                    <option value="Antarctic">Antarctic</option>
+                </select>
+
+                <select id="sortBy" aria-label="Sort countries">
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                    <option value="population-desc">Population (High to Low)</option>
+                    <option value="population-asc">Population (Low to High)</option>
+                    <option value="area-desc">Area (Largest First)</option>
+                    <option value="area-asc">Area (Smallest First)</option>
+                </select>
+
+                <button id="favoritesToggle" title="Toggle favorites view">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Favorites</span>
+                </button>
+            </div>
+
+            <div id="btns" class="pagination">
+                <button id="prevBtn" aria-label="Previous page">&lt;</button>
+                <span id="pageInfo">Page 1 of 1</span>
+                <button id="nextBtn" aria-label="Next page">&gt;</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="countryContainer"></main>
+
+    <div id="countryModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <span id="closeModal" class="close" aria-label="Close modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="server.js"></script>
+</body>
+
+</html>
